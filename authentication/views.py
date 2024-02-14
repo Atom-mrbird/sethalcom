@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from validate_email import validate_email
+
 from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -23,7 +24,6 @@ class EmailThread(threading.Thread):
 
     def run(self):
         self.email.send()
-
 
 def send_activation_email(user, request):
     current_site = get_current_site(request)
@@ -78,17 +78,17 @@ def register(request):
                                  'Username is taken, choose another one')
             context['has_error'] = True
 
-            return render(request, 'authentication/register.html', context, status=409)
+            return render(request, 'todo/register.html', context, status=409)
 
         if User.objects.filter(email=email).exists():
             messages.add_message(request, messages.ERROR,
                                  'Email is taken, choose another one')
             context['has_error'] = True
 
-            return render(request, 'authentication/register.html', context, status=409)
+            return render(request, 'todo/register.html', context, status=409)
 
         if context['has_error']:
-            return render(request, 'authentication/register.html', context)
+            return render(request, 'todo/register.html', context)
 
         user = User.objects.create_user(username=username, email=email)
         user.set_password(password)
@@ -102,7 +102,7 @@ def register(request):
                                  'We sent you an email to verify your account')
             return redirect('login')
 
-    return render(request, 'authentication/register.html')
+    return render(request, 'todo/register.html')
 
 
 @auth_user_should_not_access
@@ -118,12 +118,12 @@ def login_user(request):
         if user and not user.is_email_verified:
             messages.add_message(request, messages.ERROR,
                                  'Email is not verified, please check your email inbox')
-            return render(request, 'authentication/login.html', context, status=401)
+            return render(request, 'todo/login.html', context, status=401)
 
         if not user:
             messages.add_message(request, messages.ERROR,
                                  'Invalid credentials, try again')
-            return render(request, 'authentication/login.html', context, status=401)
+            return render(request, 'todo/login.html', context, status=401)
 
         login(request, user)
 
@@ -132,7 +132,7 @@ def login_user(request):
 
         return redirect(reverse('home'))
 
-    return render(request, 'authentication/login.html')
+    return render(request, 'todo/login.html')
 
 
 def logout_user(request):

@@ -1,11 +1,12 @@
-
 from django import forms
-from .models import Todo
+from django.contrib.auth.forms import UserCreationForm
+from .models import User
 
-
-class TodoForm(forms.ModelForm):
-
+class UserRegistrationForm(UserCreationForm):
     class Meta:
-        model = Todo
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
-        fields = ['title', 'description', 'is_completed']
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)

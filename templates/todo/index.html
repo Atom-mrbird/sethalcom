@@ -8,18 +8,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Free Snow Bootstrap Website Template | Home :: w3layouts</title>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+    {% load static %}
+<link href="{% static 'css/bootstrap.css'%}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css'%}" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="js/jquery.min.js"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
 <!--<script src="js/jquery.easydropdown.js"></script>-->
 <!--start slider -->
 <link rel="stylesheet" href="css/fwslider.css" media="all">
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/fwslider.js"></script>
+<script src="{% static 'js/jquery-ui.min.js'%}"></script>
+<script src="{% static 'js/fwslider.js'%}"></script>
 <!--end slider -->
 <script type="text/javascript">
         $(document).ready(function() {
@@ -60,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			  <div class="col-md-12">
 				 <div class="header-left">
 					 <div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt=""/></a>
+						<a href="{% url 'index'%}'"><img src="images/logo.png" alt=""/></a>
 					 </div>
 					 <div class="menu">
 						  <a class="toggleMenu" href="#"><img src="images/nav.png" alt="" /></a>
@@ -89,8 +90,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</div>
 						<!----search-scripts---->
-						<script src="js/classie.js"></script>
-						<script src="js/uisearch.js"></script>
+						<script src="{% static 'js/classie.js'%}"></script>
+						<script src="{% static 'js/uisearch.js'%}"></script>
 						<script>
 							new UISearch( document.getElementById( 'sb-search' ) );
 						</script>
@@ -198,7 +199,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    
 		});
 		</script>
-		<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.flexisel.js'%}"></script>
 		</div>
 	</div>
 	<div class="content-bottom">

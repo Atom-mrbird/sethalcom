@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import TodoForm
+from .forms import UserRegistrationForm,UserLoginForm
 from .models import Todo
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -34,7 +34,7 @@ def index(request):
 
 @login_required
 def create_todo(request):
-    form = TodoForm()
+    form = UserRegistrationForm()
     context = {'form': form}
 
     if request.method == 'POST':
@@ -85,7 +85,7 @@ def todo_delete(request, id):
 @login_required
 def todo_edit(request, id):
     todo = get_object_or_404(Todo, pk=id)
-    form = TodoForm(instance=todo)
+    form = UserLoginForm(instance=todo)
     context = {'todo': todo, 'form': form}
 
     if request.method == 'POST':
